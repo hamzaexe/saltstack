@@ -7,4 +7,4 @@ make sure apache is running:
       - name: apache2
       - enable: True
       - require:
-          - pkg: install_apache
+          - pkg: install_apache2
