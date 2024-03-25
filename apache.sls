@@ -1,10 +1,18 @@
 install_apache:
     pkg.installed:
+{% if grains['os_family'] == 'Debian' %}
       - name: apache2
+{% if grains['os_family'] == 'Redhat' %}
+      - name: httpd
+{% endif %}
 
 make sure apache is running:
     service.running:
+{% if grains['os_family'] == 'Debian' %}
       - name: apache2
+{% elif grains['os_family'] == 'RedHat' %}
+      - name: httpd
+{% endif %}
       - enable: True
       - require:
           - pkg: install_apache
